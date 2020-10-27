@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Image, StyleSheet, Dimensions} from 'react-native';
+import {Text, View, Image, StyleSheet, Dimensions, TouchableOpacity, Linking} from 'react-native';
 
 const RestaurantDetail = (props) => {
   const {selectedRestaurant} = props.route.params;
@@ -36,6 +36,9 @@ const RestaurantDetail = (props) => {
       <View style={styles.infoContainer}>
         <Text style={styles.infotext}>{selectedRestaurant.postal_code}</Text>
       </View>
+      <TouchableOpacity style={styles.linkButton} onPress={() =>Linking.openURL(selectedRestaurant.reserve_url)}>
+        <Text style={styles.linkText}>Go to Website</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -75,4 +78,17 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
   },
+
+  linkButton:{
+    backgroundColor:"#c8e6c9",
+    margin:30,
+    padding:10,
+    borderRadius:20
+  },
+  linkText:{
+    fontSize:18,
+    color:"#f48fb1",
+    fontWeight:"bold",
+    alignSelf:"center"
+  }
 });
